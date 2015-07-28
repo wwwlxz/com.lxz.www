@@ -3,6 +3,7 @@ package com.lxz.reflect;
 import java.lang.reflect.Field;
 
 public class InvokeFieldDemo {
+	//此方法
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchFieldException, SecurityException{
 		Class<?> c1 = null;
 		Object obj = null;
