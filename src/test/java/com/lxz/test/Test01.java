@@ -16,6 +16,9 @@ class Person{
 		this.age = age;
 	}
 	
+	public String toString(){
+		return "I'm a person";
+	}
 }
 
 class Student extends Person{
