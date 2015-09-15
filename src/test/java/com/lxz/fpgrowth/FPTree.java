@@ -114,7 +114,7 @@ public class FPTree {
             // 计算事务数据库中各项的支持度
             for (List<String> record : transRecords) {
                 for (String item : record) {
-                    if (!map.keySet().contains(item)) {
+                    if (!map.containsKey(item)/*keySet().contains(item)*/) {
                         TreeNode node = new TreeNode(item);
                         node.setCount(1);
                         map.put(item, node);
@@ -163,7 +163,7 @@ public class FPTree {
     public LinkedList<String> sortByF1(List<String> transRecord,
             ArrayList<TreeNode> F1) {
         Map<String, Integer> map = new HashMap<String, Integer>();
-        for (String item : transRecord) {
+        /*for (String item : transRecord) {
             // 由于F1已经是按降序排列的，
             for (int i = 0; i < F1.size(); i++) {
                 TreeNode tnode = F1.get(i);
@@ -171,19 +171,33 @@ public class FPTree {
                     map.put(item, i);
                 }
             }
-        }
-        ArrayList<Entry<String, Integer>> al = new ArrayList<Entry<String, Integer>>(
-                map.entrySet());
-        Collections.sort(al, new Comparator<Map.Entry<String, Integer>>() {
-            public int compare(Entry<String, Integer> arg0,
-                    Entry<String, Integer> arg1) {
-                // 降序排列
-                return arg0.getValue() - arg1.getValue();
-            }
-        });
+        }*/
+        /*优化后的*/
+//        for(int i = 0; i < F1.size(); i++){
+//        	if(transRecord.contains(F1.get(i).getName())){
+//        		map.put(F1.get(i).getName(), i);
+//        	}
+//        }
+//        ArrayList<Entry<String, Integer>> al = new ArrayList<Entry<String, Integer>>(
+//                map.entrySet());
+//        Collections.sort(al, new Comparator<Map.Entry<String, Integer>>() {
+//            public int compare(Entry<String, Integer> arg0,
+//                    Entry<String, Integer> arg1) {
+//                // 降序排列
+//                return arg0.getValue() - arg1.getValue();
+//            }
+//        });
+//        LinkedList<String> rest = new LinkedList<String>();
+//        for (Entry<String, Integer> entry : al) {
+//            rest.add(entry.getKey());
+//        }
+//        return rest;
+        /*再次优化后*/
         LinkedList<String> rest = new LinkedList<String>();
-        for (Entry<String, Integer> entry : al) {
-            rest.add(entry.getKey());
+        for(int i = 0; i < F1.size(); i++){
+        	if(transRecord.contains(F1.get(i).getName())){
+        		rest.add(F1.get(i).getName());
+        	}
         }
         return rest;
     }
