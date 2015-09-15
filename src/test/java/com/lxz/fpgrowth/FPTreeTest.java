@@ -64,6 +64,7 @@ public class FPTreeTest {
 			Map<String, TreeNode> map = new HashMap<String, TreeNode>();
 			for(List<String> record : transRecords){
 				for(String item : record){
+					System.out.println(map.keySet() + "\t########" + item);
 					if(!map.containsKey(item)){
 						TreeNode node = new TreeNode(item);
 						node.setCount(1);
@@ -183,7 +184,7 @@ public class FPTreeTest {
 	public static void main(String[] args){
 		FPTreeTest fpTreeTest = new FPTreeTest();
 		fpTreeTest.setMinSupport(3);
-		List<List<String>> transRecords = fpTreeTest.readTransRecord("d:\\market.txt");
+		List<List<String>> transRecords = fpTreeTest.readTransRecord("d:\\hello.txt");
 		fpTreeTest.FPGrowth(transRecords, null);
 //		List<String> record = null;
 //		for(int i = 0; i < transRecords.size(); i++){
@@ -192,4 +193,5 @@ public class FPTreeTest {
 //		}
 //		System.out.println(transRecords);
 	}
+	
 }
