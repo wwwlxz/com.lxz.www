@@ -143,8 +143,8 @@ public class FPTreeTest {
 	}
 	
 	public void FPGrowth(List<List<String>> transRecords, List<String> postPattern){
-		ArrayList<TreeNode> headerTable = buildHeaderTable(transRecords);
-		TreeNode treeRoot = buildTree(transRecords, headerTable);
+		ArrayList<TreeNode> headerTable = buildHeaderTable(transRecords);//创建头表
+		TreeNode treeRoot = buildTree(transRecords, headerTable);//创建树
 		if(treeRoot.getChildren() == null || treeRoot.getChildren().size() == 0){
 			return;
 		}

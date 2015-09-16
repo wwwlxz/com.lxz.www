@@ -157,11 +157,7 @@ public class ArrayFPTree {
 				newPostPattern.addAll(postPattern);
 			}
 			ArrayList<ArrayList<String>> newTransRecords = new ArrayList<ArrayList<String>>();
-			while(!header.isEmpty()){
-				int counter = headerTable.get(header);
-				ArrayList<String> prenodes = new ArrayList<String>();
-				
-			}
+			newTransRecords = root.get(header);
 			FPGrowth(newTransRecords, newPostPattern);
 		}
 	}
