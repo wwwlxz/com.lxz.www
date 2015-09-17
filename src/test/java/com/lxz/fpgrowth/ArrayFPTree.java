@@ -84,6 +84,7 @@ public class ArrayFPTree {
 					sorted_map.remove(entry.getKey());
 				}
 			}
+			System.out.println(sorted_map);
 			return sorted_map;
 			//System.out.println(sorted_map);
 			/*Iterator iter = sorted_map.entrySet().iterator();
@@ -135,30 +136,42 @@ public class ArrayFPTree {
 		TreeMap<String, Integer> headerTable = builderHeaderTable(transRecords);
 		//System.out.println(headerTable);
 		//ArrayList<String> headerTable = builderHeaderTable(transRecords);
-		Map<String, ArrayList<ArrayList<String>>> root = buildArray(transRecords, headerTable); 
-		System.out.println(root);
-		System.out.println("###################");
-		if(root.isEmpty()){
-			return;
-		}
-		if(postPattern != null){
-			for(String header : headerTable.keySet()){
-				System.out.println(headerTable.get(header) + "\t" + header);
-				for(String ele : postPattern){
-					System.out.println("\t" + ele);
-				}
-				System.out.println();
+		if(headerTable != null){
+			Map<String, ArrayList<ArrayList<String>>> root = buildArray(transRecords, headerTable); 
+			System.out.println(root);
+			System.out.println("###################");
+			if(root.isEmpty()){
+				return;
 			}
-		}
-		for(String header : headerTable.keySet()){
-			ArrayList<String> newPostPattern = new ArrayList<String>();
-			newPostPattern.add(header);
 			if(postPattern != null){
-				newPostPattern.addAll(postPattern);
+				for(Map.Entry<String, Integer> header : headerTable.entrySet()){
+					System.out.print(header.getValue() + "\t" + header.getKey());
+					for(String ele : postPattern){
+						System.out.print("\t" + ele);
+					}
+					System.out.println();
+				}
+//				for(String header : headerTable.keySet()){
+//					System.out.println(headerTable.keySet() + "-----" + headerTable.get(header));
+//					System.out.print(headerTable.get(header) + "\t" + header);
+//					for(String ele : postPattern){
+//						System.out.print("\t" + ele);
+//					}
+//					System.out.println();
+//				}
 			}
-			ArrayList<ArrayList<String>> newTransRecords = new ArrayList<ArrayList<String>>();
-			newTransRecords = root.get(header);
-			FPGrowth(newTransRecords, newPostPattern);
+			for(String header : headerTable.keySet()){
+				ArrayList<String> newPostPattern = new ArrayList<String>();
+				newPostPattern.add(header);
+				if(postPattern != null){
+					newPostPattern.addAll(postPattern);
+				}
+				ArrayList<ArrayList<String>> newTransRecords = new ArrayList<ArrayList<String>>();
+				newTransRecords = root.get(header);
+				FPGrowth(newTransRecords, newPostPattern);
+			}
+		}else{
+			return ;
 		}
 	}
 	
